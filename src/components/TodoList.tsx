@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Todo } from '../App'
 import TodoItem from './TodoItem'
 
@@ -7,7 +8,7 @@ interface TodoListProps {
   onDelete: (id: number) => void;
 }
 
-function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
+const TodoList = memo(function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
   if (todos.length === 0) {
     return <div className="empty-list">Нет задач</div>
   }
@@ -24,6 +25,6 @@ function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
       ))}
     </div>
   )
-}
+});
 
 export default TodoList 

@@ -1,8 +1,7 @@
-import { useState } from 'react'  
-import './App.css'
-import TodoForm from './components/TodoForm';
+import './App.css';
 import TodoList from './components/TodoList';
-
+import TodoForm from './components/TodoForm';
+import { useTodos } from './hooks/useTodos';
 
 export interface Todo {
   id: number;
@@ -11,28 +10,7 @@ export interface Todo {
 }
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>([])
-
-  const addTodo = (text: string) => {
-    if (text.trim()) {
-      setTodos([
-        ...todos,
-        { id: Date.now(), text, completed: false }
-      ])
-    }
-  }
-
-  const toggleTodo = (id: number) => {
-    setTodos(
-      todos.map(todo => 
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    )
-  }
-
-  const deleteTodo = (id: number) => {
-    setTodos(todos.filter(todo => todo.id !== id))
-  }
+  const { todos, addTodo, toggleTodo, deleteTodo } = useTodos();
 
   return (
     <div className="app">
@@ -44,7 +22,7 @@ function App() {
         onDelete={deleteTodo} 
       />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

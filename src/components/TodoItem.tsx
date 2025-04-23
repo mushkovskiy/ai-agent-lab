@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Todo } from '../App'
 
 interface TodoItemProps {
@@ -6,7 +7,7 @@ interface TodoItemProps {
   onDelete: (id: number) => void;
 }
 
-function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
+const TodoItem = memo(function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
   return (
     <div className={`todo-item ${todo.completed ? 'completed' : ''}`}>
       <div 
@@ -23,6 +24,6 @@ function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
       </button>
     </div>
   )
-}
+});
 
 export default TodoItem 

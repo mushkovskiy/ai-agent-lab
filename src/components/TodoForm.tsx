@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useState, memo } from 'react'
 
 interface TodoFormProps {
   onAdd: (text: string) => void;
 }
 
-function TodoForm({ onAdd }: TodoFormProps) {
+const TodoForm = memo(function TodoForm({ onAdd }: TodoFormProps) {
   const [text, setText] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -29,6 +29,6 @@ function TodoForm({ onAdd }: TodoFormProps) {
       </button>
     </form>
   )
-}
+})
 
 export default TodoForm 
